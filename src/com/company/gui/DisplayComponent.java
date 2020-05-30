@@ -110,7 +110,10 @@ public class DisplayComponent extends JComponent {
     private List<NodeView> compute(Node start, NodeView end) {
 
         if (!cached) {
+            long timeStart = System.nanoTime();
             Algorithms.findPaths(start);
+            long timeEnd = System.nanoTime();
+            System.out.println("Time taken: " + (timeEnd - timeStart) + "ns");
             cached = true;
         }
         return drawables.stream()
